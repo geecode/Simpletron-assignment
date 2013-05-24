@@ -14,7 +14,7 @@ public:
 	int get_operation_code();
 	int get_operand();
 	int load_accumulator( );
-	static const int SIZE = 100;
+	static const int SIZE = 1000;
 	static const int READ = 10;
 	static const int WRITE = 11;
 	static const int LOAD = 20;
@@ -23,6 +23,7 @@ public:
 	static const int SUBTRACT = 31;
 	static const int DIVIDE = 32;
 	static const int MULTIPLY = 33;
+	static const int MODULUS = 34;
 	static const int BRANCH = 40;
 	static const int BRANCHNEG = 41;
 	static const int BRANCHZERO = 42;

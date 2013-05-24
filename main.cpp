@@ -14,7 +14,6 @@ int main()
 	computer.enter_instructions();
 	computer.execute_program();
 	computer.print_dump();
-	//cout << noshowpos << memory[ 6 ] << endl;
 
 	system( "pause" );
 	return 0;

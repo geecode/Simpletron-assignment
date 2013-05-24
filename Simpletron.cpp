@@ -57,12 +57,12 @@ void Simpletron::set_operation_code()
 void Simpletron::set_operand()
 {
 	operand = instruction_register % 100;
-}
+} 
 
 void Simpletron::execute_program()
 {
-	cout << "*** Program loading ompleted ***\n";
-	cout << "*** Begin program execution  ***\n\n";
+	cout << "*** Program loading completed ***\n";
+	cout << "***  Begin program execution  ***\n\n";
 	instruction_counter = 0;
 	for ( ; operation_code != 43; ++instruction_counter ) {
 		set_instruction_register();
@@ -119,7 +119,7 @@ void Simpletron::execute_program()
 			}
 		case MULTIPLY:
 			if ( 9999 >= accumulator * memory[ operand ]
-			&& -9999 <= accumulator * memory[ operand ] ) {
+			     && -9999 <= accumulator * memory[ operand ] ) {
 			    accumulator *= memory[ operand ];
 				break;
 			} else {
@@ -127,7 +127,18 @@ void Simpletron::execute_program()
 				cout << "*** Simpletron execution abnormally terminated ***\n";
 				operation_code = 43;
 				break;
-			} 
+			}
+		case MODULUS:
+			if ( memory[ operand ] && accumulator % memory[ operand ] <= 9999
+				 && -9999 <= accumulator % memory[ operand ] ) {
+				accumulator %= memory[ operand ];
+				break;
+			} else {
+				cout << "***  Fatal error!: Attempt to divide by zero!  ***\n";
+				cout << "*** Simpletron execution abnormally terminated ***\n";
+				operation_code = 43;
+				break;
+			}
 		case BRANCH:
 			instruction_counter = operand;
 			break;
@@ -198,11 +209,11 @@ void Simpletron::print_dump()
 		cout << setw( 5 ) << right << k << " ";
 	}
 	cout << endl;
-	for ( int i = 0; i < 10; ++i ) {
+	for ( int i = 0; i < 100; ++i ) {
 		if ( !i )
-			cout << noshowpos << " " << i << " ";
-		if ( i )
-			cout << noshowpos << i * 10 << " ";
+			cout << noshowpos << setw( 3 ) << i << " ";
+		if ( i ) 
+			cout << noshowpos << setfill( ' ' ) << setw( 3 ) << i * 10 << " ";
 		for ( int j = 0; j < 10; ++j ) {
 			
 			cout << setw( 5 ) << right << showpos << setfill( '0' )
